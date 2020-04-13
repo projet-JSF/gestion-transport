@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +18,8 @@ import javax.persistence.Table;
  */
 @Entity(name="utilisateur")
 @Table(name="utilisateurs")
+@NamedQueries({@NamedQuery(name="Utilisateur.isExists", 
+query="SELECT COUNT(f.idUtilisateur) FROM utilisateur f WHERE f.login = ?1 AND f.motDePasse = ?2")})
 public class Utilisateur implements Serializable {
 
 	/*=================================Propriétés===============================================*/
