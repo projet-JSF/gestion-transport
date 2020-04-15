@@ -16,31 +16,23 @@
 	<ui:composition>
 
 		<h:form>  
-		 d /
+	
 		    <p:menubar id="stickyMenu">
 		    
 				<p:menuitem value="Accueil" action="accueil"  />
 				
 		        <p:submenu label="Gestion des cargaisons" style="color : white;">
 		            <p:menuitem value="Voir la liste des cargaisons" action="listAllCargaison" />
-		            <p:menuitem value="Chercher une cargaison" action="searchCargaison" actionListener="#{gestionCargaisonBean.findID}"/>
-		            <p:menuitem value="Ajouter une cargaison" action="addCargaison" actionListener="#{gestionCargaisonBean.initialiserCargaison}"/>
-					<p:menuitem value="Supprimer une  cargaison" action="deleteCargaison" actionListener="#{gestionCargaisonBean.deleteID}" />
+		            <p:menuitem value="Chercher une cargaison" action="searchCargaison" actionListener="#{gestion_cargaison.findListIdCargaison}"/>
+		            <p:menuitem value="Ajouter une cargaison" action="addCargaison" actionListener="#{gestion_cargaison.initialiserCargaison}"/>
 		        </p:submenu>
 		 
 		        <p:submenu label="Gestion des marchandises">
 		            <p:menuitem value="Voir la liste des marchandises" action="listAllMarchandises"/>
-		            <p:menuitem value="Chercher une marchandise" action="searchMarcandise" actionListener="#{gestionMarchandiseBean.findID}" />
-		            <p:menuitem value="Ajouter une marchandise" action="addMarchandise" actionListener="#{gestionClient.initialiserMarchandise}"/>
+		            <p:menuitem value="Chercher une marchandise" action="searchMarcandise" actionListener="#{gestion_marchandise.findListIdMarchandise}" />
+		            <p:menuitem value="Ajouter une marchandise" action="addMarchandise" actionListener="#{gestion_marchandise.initialiserMarchandise}"/>
 		        </p:submenu>
-		 
-		 		<p:submenu label="Gestion utilisateur">
-		            <p:menuitem value="Voir la liste des utilisateurs" action="listAllUtilisateurs"/>
-		            <p:menuitem value="Chercher un utilisateur" action="searchUtilisateur" actionListener="#{gestionUtilisateurBean.findID}"/>
-		            <p:menuitem value="Ajouter un utilisateur" action="addUtilisateur" actionListener="#{gestionUtilisateurBean.initialiserUtilisateur}"/>
-		        </p:submenu>
-		 
-		 
+		 	 
 		        <f:facet name="options">
 
 						<p:commandButton action="#{authenticationBean.deconnecterUtilisateur}" value="Se deconnecter" />
