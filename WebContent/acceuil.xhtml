@@ -42,14 +42,14 @@ h1{
 				<h4 style="font-family: 'Open Sans', sans-serif;"> Liste des marchandises</h4>
 			
 				<h:form>
-					<p:dataTable value="#{gestionClient.findClientsDuConseiller(authenticationBean.conseillerlogged.idConseiller)}" var="client" resizableColumns="true" width="60%" border="1">
+					<p:dataTable value="#{gestionMarchandiseBean.findID(authenticationBean.idMarchandise)}" var="marchandises" resizableColumns="true" width="60%" border="1">
 						<p:column>
 							<!-- En tete de la colonne -->
 							<f:facet name="header">
-								<h:outputText value="ID client" />
+								<h:outputText value="ID marchandise" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.idClient }" />
+							<h:outputText value="#{marchandise.id_marchandise }" />
 						</p:column>
 					
 						<p:column>
@@ -58,65 +58,48 @@ h1{
 								<h:outputText value="Nom" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.nom }" />
+							<h:outputText value="#{marchandise.nom }" />
 						</p:column>
 						
 						<p:column>
 							<!-- En tete de la colonne -->
 							<f:facet name="header">
-								<h:outputText value="Prenom" />
+								<h:outputText value="Poids" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.prenom }" />
+							<h:outputText value="#{marchandise.poids }" />
 						</p:column>
 						
 						<p:column>
 							<!-- En tete de la colonne -->
 							<f:facet name="header">
-								<h:outputText value="Adresse" />
+								<h:outputText value="Temperature" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.adresse }" />
+							<h:outputText value="#{marchandise.temperature }" />
 						</p:column>
 						
 									<p:column>
 							<!-- En tete de la colonne -->
 							<f:facet name="header">
-								<h:outputText value="Code postal" />
+								<h:outputText value="Volume" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.codePostal }" />
+							<h:outputText value="#{marchandise.volume }" />
 						</p:column>
 						
 						<p:column>
 							<!-- En tete de la colonne -->
 							<f:facet name="header">
-								<h:outputText value="Ville" />
+								<h:outputText value="id_cargaison" />
 							</f:facet>
 							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.ville }" />
+							<h:outputText value="#{marchandise.cargaison }" />
 						</p:column>
 						
-						<p:column>
-							<!-- En tete de la colonne -->
-							<f:facet name="header">
-								<h:outputText value="Telephone" />
-							</f:facet>
-							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.telephone }" />
-						</p:column>
 						
-						<p:column>
-							<!-- En tete de la colonne -->
-							<f:facet name="header">
-								<h:outputText value="Conseiller" />
-							</f:facet>
-							<!-- Donnée de la colonne -->
-							<h:outputText value="#{client.conseillerId}" />
-						</p:column>
-
 						
-						<!-- Colonne pour afficher le client -->
+						<!-- Colonne pour afficher les marchandises -->
 						
 						<p:column>
 							<!-- En tete de la colonne -->
@@ -126,7 +109,7 @@ h1{
 
 							<!-- Donnée de la colonne -->
 						
-							<h:commandLink id="affiche" action="afficheClient" actionListener="#{gestionClient.selectionnerClient}" >
+							<h:commandLink id="affiche" action="afficheMarchandise" actionListener="#{gestionMarchandise.selectionnerMarchandise}" >
 								
 									<!-- Passage de parametre au composant : nom deleteID / valeur = l'id du client -->
 									<f:param id="afficherID" name="id" value="#{client.idClient}"/>
