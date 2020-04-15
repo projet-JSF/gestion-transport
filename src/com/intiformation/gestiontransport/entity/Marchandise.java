@@ -136,9 +136,10 @@ public class Marchandise implements Serializable{
 	@Override
 	public String toString() {
 		return "Marchandise [idMarchandise=" + idMarchandise + ", nom=" + nom + ", poids=" + poids + ", temperature="
-				+ temperature + ", volume=" + volume + ", cargaisonId=" + cargaison.getIdCargaison() + "]";
+				+ temperature + ", volume=" + volume + ", cargaison=" + cargaison + "]";
 	}
-	
+
+
 	
 	
 }//end classe

@@ -31,7 +31,7 @@ public class GestionCargaisonBean {
 	//Propriété cargaison
 	private Cargaison cargaison;
 	
-	// DAO de la marchandise
+	// DAO de la cargaison
 	ICargaisonDAO cargaisonDAO;
 
 /*============================Construsteur=================================================*/		

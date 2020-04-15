@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"> 
+
+<h:head>
+	<!-- Lien vers la feuille de style css 'style-authentification.css.css' -->
+	<h:outputStylesheet library="styles" name="style-authentification.css"/>
+</h:head> 
+
+
+<body> 
+	
+
+	
+	<div align="center" class="main">
+		<h:form>
+		
+			<p:panel header="Bienvenue sur le site" id="panel" >
+			
+		        <br/>
+
+				<p:commandButton action="#{initialisation.initValuesBDD}" value="Entrer"  update="panel"  style="margin-left: 30%;" styleClass="ui-priority-primary"/>
+
+
+			</p:panel>
+		</h:form>
+	
+	</div> <!-- End class main -->
+</body> 
+</html>
