@@ -176,5 +176,34 @@ public class GestionMarchandiseBean implements Serializable{
 			this.marchandise = marchandise;
 		}
 		
+
+/*============================Méthodes pour les templates=================================================*/
+		
+		/****************************************************************************************************/
+		/*********************************Initialiser marchandise********************************************/
+		/****************************************************************************************************/
+		
+			/**
+			 * Invoqué au click du bouton 'ajouter une marchandise' de la page 'accueil.xhtml'
+			 * Permet d'initialiser un objet de type Marchandise à vide pour recuperer les valeurs saisies dans le formulaire de la page ajouter_marchandise.xhtml
+			 */
+			public void initialiserMarchandise(ActionEvent event){
+				
+				System.out.println("Je suis dans initialiserMarchandise");
+				
+				//Instanciation d'un nouvel objet marchandise vide dans lequel on va stocker les infos de la nouvelle marchandise via le formulaire
+				Marchandise addMarchandise = new Marchandise();
+				
+				//Affectation de l'objet à la prop marchandise du MB
+				setMarchandise(addMarchandise);
+				
+				//Recup de la liste des id des marchandises
+				System.out.println("Récupération de la liste de marchandises");
+				
+				listeMarchandiseBDD = (List<Marchandise>) marchandiseDAO.getById(marchandiseID);
+				
+				
+				
+			}//end initialiserMarchandise
 		
 }//end classe
