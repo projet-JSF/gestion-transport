@@ -31,10 +31,12 @@ public class MarchandiseDAOImplTest {
 		// Recup de la liste
 		List<Marchandise> ListeMarchandises = marchandiseDao.getAll();
 
+		System.out.println("\n\n ////////////////////////// "+ListeMarchandises);
 		// Test si la liste fait bien la bonne longueur
-		assertTrue("Est ce que la récupération a marché", ListeMarchandises.size() == 1);
+		assertTrue("Est ce que la récupération a marché", ListeMarchandises.size() == 3);
 
 	}// end testgetAllMarchandisesBdd
+	
 
 	/*******************************************
 	 * testsupprimerMarchandise
@@ -58,7 +60,7 @@ public class MarchandiseDAOImplTest {
 		// Calcule de l'id de la nouvelle marchandise (=nb de marchandise déjà dans la
 		// bdd +
 		// 1) et attribution de l'id à l'objet marchandise
-		Long idNouvelleMarchandise = (long) (listeMarchandises.size() + 1);
+		Long idNouvelleMarchandise = (long) (listeMarchandises.size());
 		marchandise.setIdMarchandise(idNouvelleMarchandise);
 
 		System.out.println("\n\n" + listeMarchandises + "\n\n");
@@ -89,20 +91,23 @@ public class MarchandiseDAOImplTest {
 		Marchandise marchandiseGetByID = new Marchandise("testGetByID", 180, 5, 220);
 		marchandiseDao.ajouter(marchandiseGetByID);
 
+		System.out.println("marchandiseGetByID ="+marchandiseGetByID);
 		// Récupération de la liste des marchnadises après ajout mais avant suppression
-		// de
-		// la marchandise
+		// de la marchandise
 		List<Marchandise> listeMarchandises = marchandiseDao.getAll();
 
 		// Calcule de l'id de la nouvelle marchandise (=nb de marchandise déjà dans la
-		// bdd +
-		// 1) et attribution de l'id à l'objet marchandise
-		Long idNouvelleMarchandise = (long) (listeMarchandises.size());
+		// bdd) et attribution de l'id à l'objet marchandise
+		Long idNouvelleMarchandise = (long) (listeMarchandises.size()+1);
 		marchandiseGetByID.setIdMarchandise(idNouvelleMarchandise);
-
+		
+		
+		
 		// Récupération de la marchandise précédemment ajoutée
 		Marchandise marchandiseRecup = marchandiseDao.getById(idNouvelleMarchandise);
-
+		System.out.println("marchandiseRecup ="+marchandiseRecup);
+		
+		
 		// On test si la marchandise récupérée est égale à la marchandise ajoutée
 		assertTrue("Est ce que la récupération a marché", marchandiseGetByID.equals(marchandiseRecup));
 
@@ -130,7 +135,7 @@ public class MarchandiseDAOImplTest {
 		// Calcule de l'id de la derniere marchandise ajoutée (=nb de marchandises dans
 		// la
 		// bdd) et attribution de l'id à l'objet marchandise
-		Long idNouvelleMarchandise = (long) (listeMarchandises.size());
+		Long idNouvelleMarchandise = (long) (listeMarchandises.size()+1);
 		marchandise.setIdMarchandise(idNouvelleMarchandise);
 
 		// Creation de l'objet marchandiseModif qui est une modification de l'objet

@@ -41,7 +41,7 @@ public class Marchandise implements Serializable{
 	private double volume;
 	
 	//liaison avec la table cargaisons => FK
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="cargaison_id", referencedColumnName="id_cargaison")
 	private Cargaison cargaison;
 	

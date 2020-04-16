@@ -44,9 +44,9 @@ public class Cargaison implements Serializable{
 	@Column(name="date_livraison")
 	private String dateLivraison; 
 
-	//Liaison avec la table marchandises
-	@OneToMany(mappedBy="cargaison", cascade=CascadeType.ALL)
-	private List<Marchandise> listeMarchandise;
+//	//Liaison avec la table marchandises
+//	@OneToMany(mappedBy="cargaison", cascade=CascadeType.ALL)
+//	private List<Marchandise> listeMarchandise;
 	
 	
 	/*=================================Constructeurs===============================================*/
@@ -121,13 +121,6 @@ public class Cargaison implements Serializable{
 		this.dateLivraison = dateLivraison;
 	}
 
-	public List<Marchandise> getListeMarchandise() {
-		return listeMarchandise;
-	}
-
-	public void setListeMarchandise(List<Marchandise> listeMarchandise) {
-		this.listeMarchandise = listeMarchandise;
-	}
 
 	@Override
 	public String toString() {

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<!-- ============Utilisation du modele layout.xhtml============ -->
+
+	<!-- Injection du layout  -->
+	<ui:composition template="/templates/layout.xhtml">
+
+
+		<!-- Definition d'un nouveau content -->
+		<ui:define name="content">
+			<br />
+			<br />
+			<h:form>
+				<p:panel header="Ajout marchandise" id="panel">
+					<h:panelGrid id="grid" columns="3" cellpadding="5" cellspacing="5">
+
+
+
+						<h:outputLabel for="idNom" value="Nom" />
+						<h:inputText id="idNom"
+							value="#{gestion_marchandise.marchandise.nom}" />
+						<p:message for="idNom" />
+
+						<h:outputLabel for="idpoids" value="Poids" />
+						<h:inputText id="idpoids"
+							value="#{gestion_marchandise.marchandise.poids}" />
+						<p:message for="idpoids" />
+
+						<h:outputLabel for="idTemperature" value="Temperature" />
+						<h:inputText id="idTemperature"
+							value="#{gestion_marchandise.marchandise.temperature}" />
+						<p:message for="idTemperature" />
+
+						<h:outputLabel for="idVolume" value="Volume" />
+						<h:inputText id="idVolume"
+							value="#{gestion_marchandise.marchandise.volume}" />
+						<p:message for="idVolume" />
+
+
+						<p:outputLabel for="idIdCargaison" value="ID cargaison" />
+						<p:selectOneMenu id="idIdCargaison" value="#{gestion_marchandise.idCargaisonMarchandise}" style="width:180px">
+							<f:selectItems value="#{gestion_marchandise.listeIDCargaisonsBDD}" />
+				       	</p:selectOneMenu>
+						<p:message for="idIdCargaison" />
+
+						<f:facet name="footer">
+							<p:commandButton update="grid" action="accueil"
+								actionListener="#{gestion_marchandise.ajouterMarchandise}"
+								value="Ajouter" />
+
+
+							<!-- =========Affichage des messages ==================== -->
+
+							<p:messages id="messages" showDetail="true" closable="true">
+								<p:autoUpdate />
+							</p:messages>
+
+
+						</f:facet>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

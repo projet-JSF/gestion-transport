@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<!-- ============Utilisation du modele layout.xhtml============ -->
+
+	<!-- Injection du layout  -->
+	<ui:composition template="/templates/layout.xhtml">
+
+
+		<!-- Definition d'un nouveau content -->
+		<ui:define name="content">
+			<br />
+			<br />
+			<h:form>
+				<p:panel header="Affichage cargaison" id="panel">
+					<h:panelGrid id="grid" columns="3" cellpadding="5" cellspacing="5">
+
+						<p:outputLabel for="idIdMarchandise" value="ID marchandise" />
+						<h:outputText id="idIdMarchandise"
+							value="#{gestion_marchandise.marchandise.idMarchandise}" />
+						<br />
+
+						<h:outputLabel for="idNom" value="Nom" />
+						<h:outputText id="idNom"
+							value="#{gestion_marchandise.marchandise.nom}" />
+						<br />
+
+						<h:outputLabel for="idpoids" value="Poids" />
+						<h:outputText id="idpoids"
+							value="#{gestion_marchandise.marchandise.poids}" />
+						<br />
+
+						<h:outputLabel for="idTemperature" value="Temperature" />
+						<h:outputText id="idTemperature"
+							value="#{gestion_marchandise.marchandise.temperature}" />
+						<br />
+
+						<h:outputLabel for="idVolume" value="Volume" />
+						<h:outputText id="idVolume"
+							value="#{gestion_marchandise.marchandise.volume}" />
+						<br />
+
+
+						<h:outputLabel for="idIdCargaison" value="ID cargaison" />
+						<h:outputText id="idIdCargaison"
+							value="#{gestion_marchandise.marchandise.cargaison.idCargaison}" />
+						<br />
+						
+						<f:facet name="footer">
+							<p:commandButton action="editMarchandise" value="Modifier" />
+							<p:commandButton action="accueil"
+								actionListener="#{gestion_marchandise.supprimerMarchandise}"
+								value="Supprimer" />
+
+							<!-- =========Affichage des messages ==================== -->
+
+							<p:messages id="messages" showDetail="true" closable="true">
+								<p:autoUpdate />
+							</p:messages>
+
+
+						</f:facet>
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+
+
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

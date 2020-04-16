@@ -109,14 +109,15 @@ public class CargaisonDAOImplTest {
 		List<Cargaison> listeCargaisons =cargaisondao.getAll();
 		
 		//Calcule de l'id de la nouvelle cargaison (=nb de cargaison déjà dans la bdd + 1) et attribution de l'id à l'objet cargaison
-		Long idNouvelleCargaison = (long) (listeCargaisons.size()+1);
+		Long idNouvelleCargaison = (long) (listeCargaisons.size());
 		cargaison.setIdCargaison(idNouvelleCargaison);
-		
-		System.out.println("\n\n"+listeCargaisons+"\n\n");
-		System.out.println(cargaison);
+
+		Cargaison cargaisonRecup = cargaisondao.getById(idNouvelleCargaison);
+
 		//Suppression de la cargaison précédemment ajouté 
 		cargaisondao.supprimer(idNouvelleCargaison);
 
+		
 		//Mise à jour de la liste des cargaisons dans la bdd
 		listeCargaisons =cargaisondao.getAll();
 		

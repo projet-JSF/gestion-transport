@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body>
+	<!-- ============Utilisation du modele layout.xhtml============ -->
+
+	<!-- Injection du layout  -->	
+	<ui:composition template="/templates/layout.xhtml">
+
+	
+		<!-- Definition d'un nouveau content -->
+		<ui:define name="content">  
+			
+				
+				
+				<!-- ===========Affichage de la liste des marchandises=========== -->
+				
+				
+				<h2 style="font-family: 'Open Sans', sans-serif;"> Liste des marchandises</h2>
+			
+			<h:form>
+				<p:dataTable value="#{gestion_marchandise.findAllMarchandisesBdd()}"
+					var="marchandise" resizableColumns="true" width="60%" border="1">
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="ID marchandise" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.idMarchandise}" />
+					</p:column>
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="Nom" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.nom }" />
+					</p:column>
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="Poids" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.poids}" />
+					</p:column>
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="Temperature" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.temperature}" />
+					</p:column>
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="Volume" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.volume}" />
+					</p:column>
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="ID cargaison" />
+						</f:facet>
+						<!-- Donnée de la colonne -->
+						<h:outputText value="#{marchandise.cargaison.idCargaison}" />
+					</p:column>
+
+
+
+					<!-- Colonne pour afficher la marchandise -->
+
+					<p:column>
+						<!-- En tete de la colonne -->
+						<f:facet name="header">
+							<h:outputText value="Afficher" />
+						</f:facet>
+
+						<!-- Donnée de la colonne -->
+
+						<h:commandLink id="affiche" action="afficheMarchandise"
+							actionListener="#{gestion_marchandise.selectionnerMarchandise}">
+
+							<!-- Passage de parametre au composant : nom afficherID / valeur = l'id de la marchandise -->
+							<f:param id="afficherID" name="id"
+								value="#{marchandise.idMarchandise}" />
+
+							<!--  label du lien  -->
+							<h:outputText value="afficher" />
+
+						</h:commandLink>
+
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+		
+		
+		
+		</ui:define>
+	
+	</ui:composition> 
+
+</body> 
+</html>

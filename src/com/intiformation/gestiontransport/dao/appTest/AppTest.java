@@ -99,14 +99,14 @@ public class AppTest {
 		System.out.println(cargaisondao.getById(2L).toString());
 		
 //		//============= Suppression d'une marchandise ====//
-//		
-//		marchandisedao.supprimer(3L);
-//		
-//		marchandisedao.supprimer(4L);
-//		
-//		List<Marchandise> listeMarchandisesApresSuppr = marchandisedao.getAll();
-//		
-//		System.out.println("\n\n Apres suppression "+ listeMarchandisesApresSuppr);
+		
+		marchandisedao.supprimer(3L);
+		
+		marchandisedao.supprimer(4L);
+		
+		List<Marchandise> listeMarchandisesApresSuppr = marchandisedao.getAll();
+		
+		System.out.println("\n\n Apres suppression "+ listeMarchandisesApresSuppr);
 		
 //		//============ Suppression d'une cargaison ====//
 //		

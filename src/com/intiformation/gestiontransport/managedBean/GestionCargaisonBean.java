@@ -47,6 +47,7 @@ public class GestionCargaisonBean {
 	
 	// DAO de la cargaison
 	private ICargaisonDAO cargaisonDAO;
+	private IMarchandiseDAO marchandiseDAO;
 
 /*============================Constructeur=================================================*/		
 	/**
@@ -55,6 +56,7 @@ public class GestionCargaisonBean {
 	 */
 	public GestionCargaisonBean() {
 		cargaisonDAO = new CargaisonDAOImpl();
+		marchandiseDAO=new MarchandiseDAOImpl();
 	}
 	
 	/*============================Méthodes=================================================*/
@@ -63,7 +65,7 @@ public class GestionCargaisonBean {
 	/* *************** Liste de cargaisons routières  ****************** */
 	/* ***************************************************************** */
 	/**
-	 * Récupere la liste des cargaisons routières à partir de la fonction getALL de la DAO
+	 * Récupere la liste des cargaisons routières à partir de la fonction getAll de la DAO pour affichage sur la page d'accueil et liste_all_cargaisons.xhtml
 	 * @return liste des cargaisons routières
 	 */
 	public List<Cargaison> findAllCargaisonsRoutieresBdd(){
@@ -136,9 +138,11 @@ public class GestionCargaisonBean {
 	/* ****** Suppression d'une  cargaison ***************** */
 	/* ***************************************************** */
 	
+	/**
+	 * Supprime une cargaison de la bdd. Invoquée au click du bouton 'supprimer' de la page afficher_cargaison.xhtml
+	 * @param event
+	 */
 	public void supprimerCargaison(ActionEvent event) {
-		
-		System.out.println("Je suis dans supprimerCargaison du MB de Compte");
 		
 		//1. recup de l'id de la cargaison à supprimer
 		Long cargaisonID = cargaison.getIdCargaison();
@@ -147,7 +151,16 @@ public class GestionCargaisonBean {
 		//2. Recup du context
 		FacesContext contextJSF = FacesContext.getCurrentInstance();
 		
-		//3. On fait la suppression
+		//Recup de la liste des marchandises de la cargaison
+		List<Marchandise> listeMarchandises = cargaisonDAO.getMarchandise(cargaisonID);
+		
+		//Suppression des marchandises de la cargaison
+		for(Marchandise marchandise : listeMarchandises) {
+			marchandiseDAO.supprimer(marchandise.getIdMarchandise());
+		}//end for
+		
+		
+		//3.Suppression de la cargaison
 		cargaisonDAO.supprimer(cargaisonID);
 		
 	}//end supprimerCargaison
@@ -210,10 +223,10 @@ public class GestionCargaisonBean {
 		UIParameter cp = (UIParameter) event.getComponent().findComponent("afficherID");
 		
 		//2. Recup de la valeur du param => l'id de la cargaison à afficher
-		Long compteID = (Long) cp.getValue();
+		Long cargaisonID = (Long) cp.getValue();
 		
 		//2. recup de la cargaison dans la bdd par l'id
-		Cargaison cargaisonAffichage = cargaisonDAO.getById(compteID);
+		Cargaison cargaisonAffichage = cargaisonDAO.getById(cargaisonID);
 			
 		//3. affectation de la cargaison sélectionnée à la prop cargaison du managedbean
 		setCargaison(cargaisonAffichage);
@@ -226,13 +239,13 @@ public class GestionCargaisonBean {
 		}//end else
 		
 		//5. Recup du volume total
-		setVolumeTotal(cargaisonDAO.getVolumeTotal(compteID));
+		setVolumeTotal(cargaisonDAO.getVolumeTotal(cargaisonID));
 		
 		//6. Recup du poid total
-		setPoidsTotal(cargaisonDAO.getPoidsTotal(compteID));
+		setPoidsTotal(cargaisonDAO.getPoidsTotal(cargaisonID));
 		
 		//7. recup du cout 
-		setCout(cargaisonDAO.getCout(compteID));
+		setCout(cargaisonDAO.getCout(cargaisonID));
 		
 		
 	}//end selectionnerCargaison
