@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	<!-- ============Utilisation du modele layout.xhtml============ -->
+
+	<!-- Injection du layout  -->	
+	<ui:composition template="/templates/layout.xhtml">
+
+	
+		<!-- Definition d'un nouveau content -->
+		<ui:define name="content">  
+				<br/> <br/>
+					<h:form>
+						<p:panel header="Affichage cargaison" id="panel" >
+							<h:panelGrid  id="grid" columns="3" cellpadding="5" cellspacing="5">
+	
+								
+								<h:outputLabel for="idRef" value="Reference" />
+								<h:inputText id="idRef" value="#{gestion_cargaison.cargaison.reference}" required="true"/>
+								<p:message for="idRef" />
+								
+								<h:outputLabel for="iddistance" value="distance" />
+								<h:inputText id="iddistance" value="#{gestion_cargaison.cargaison.distance}" required="true"/>
+								<p:message for="iddistance" />
+								
+								<h:outputLabel for="idDate_livraison" value="Date de livraison" />
+								<h:inputText id="idDate_livraison" value="#{gestion_cargaison.cargaison.dateLivraison}" required="true"/>
+								<p:message for="idDate_livraison" />
+								
+								
+								<p:outputLabel for="idTypeCargaison" value="Type de cargaison" />
+								<p:selectOneMenu id="idTypeCargaison" value="#{gestion_cargaison.typeCargaison}" style="width:180px" required="true">
+									<f:selectItem itemLabel="     --  Choisir  --" itemValue="#{null}"  />
+									<f:selectItem itemLabel="Aerienne" itemValue="aerienne"  />
+									<f:selectItem itemLabel="Routiere" itemValue="routiere"  />
+									<f:ajax render="ajaxTarget1" />
+									<f:ajax render="ajaxTarget2" />
+					       		 </p:selectOneMenu>
+								<p:message for="idTypeCargaison" />
+								
+								
+								<p:outputPanel id="ajaxTarget1">
+									<h:outputLabel for="idpoids" value="Poids   " rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
+									<h:inputText id="idpoids" value="#{gestion_cargaison.poids}" rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
+						       	</p:outputPanel>
+						       	
+								<p:outputPanel id="ajaxTarget2">
+									<h:outputLabel for="idtemperature" value="Temperature   " rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
+									<h:inputText id="idtemperature" value="#{gestion_cargaison.temperature}" rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
+						       	</p:outputPanel>
+								
+								
+								<f:facet name="footer">
+									<p:commandButton update="grid" action="accueil" actionListener="#{gestion_cargaison.ajouterCargaison}" value="Ajouter" />
+
+									<!-- =========Affichage des messages ==================== -->
+			
+									<p:messages id="messages" showDetail="true" closable="true">
+						        		<p:autoUpdate />
+						    		</p:messages>
+								
+								
+								</f:facet>
+							</h:panelGrid>
+						</p:panel>
+					</h:form>
+					
+	
+		</ui:define>
+		
+	</ui:composition>
+</body> 
+</html>

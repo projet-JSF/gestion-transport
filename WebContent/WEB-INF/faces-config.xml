@@ -1,8 +1,717 @@
 <?xml version="1.0"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
- <application/>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	<application />
 	<!-- ======== CONFIG DE LA NAVIGATION =================== -->
- 	
+
+
+	<navigation-rule>
+		<from-view-id>/accueil.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/modifier_cargaison.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/ajouter_cargaison.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/afficher_cargaison.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+	<navigation-rule>
+		<from-view-id>/chercher_cargaison.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/liste_all_cargaisons.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/modifier_marchandise.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/ajouter_marchandise.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+	<navigation-rule>
+		<from-view-id>/afficher_marchandise.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/chercher_marchandise.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+	<navigation-rule>
+		<from-view-id>/liste_all_marchandises.xhtml</from-view-id>
+
+
+		<navigation-case>
+			<from-outcome>accueil</from-outcome>
+			<to-view-id>/accueil.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>editCargaison</from-outcome>
+			<to-view-id>/modifier_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addCargaison</from-outcome>
+			<to-view-id>/ajouter_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheCargaison</from-outcome>
+			<to-view-id>/afficher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchCargaison</from-outcome>
+			<to-view-id>/chercher_cargaison.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCargaison</from-outcome>
+			<to-view-id>/liste_all_cargaisons.xhtml</to-view-id>
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-outcome>editMarchandise</from-outcome>
+			<to-view-id>/modifier_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addMarchandise</from-outcome>
+			<to-view-id>/ajouter_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>afficheMarchandise</from-outcome>
+			<to-view-id>/afficher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>searchMarchandise</from-outcome>
+			<to-view-id>/chercher_marchandise.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllMarchandises</from-outcome>
+			<to-view-id>/liste_all_marchandises.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
 </faces-config>
 

@@ -53,7 +53,7 @@ public class CargaisonDAOImpl extends JpaDAO<Cargaison> implements ICargaisonDAO
 			
 			List<Marchandise> listeMarchandise=selectQuery.getResultList();
 
-			
+			System.out.println("DAO : " + listeMarchandise);
 			return listeMarchandise;
 		}catch (PersistenceException e){
 			System.out.println("... Erreur lors de la recuperation de la liste des marchandises de la cargaison ....");

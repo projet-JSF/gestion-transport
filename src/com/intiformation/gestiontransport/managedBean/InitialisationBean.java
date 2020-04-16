@@ -60,7 +60,7 @@ public class InitialisationBean {
 	 * située dans le fichier persistence.xml 
 	 * => Permet de recommencer avec une bdd 'propre' pour les tests
 	 */
-	public void initValuesBDD() {
+	public String initValuesBDD() {
 		
 		// Création des cargaisons et marchandises à ajouter à la bdd
 		
@@ -102,6 +102,7 @@ public class InitialisationBean {
 		utilisateurDAO.ajouter(utilisateur1);
 		utilisateurDAO.ajouter(utilisateur2);
 		
+		return "authentification.xhtml";
 	}//end initValuesBDD
 
 	

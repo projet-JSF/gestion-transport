@@ -21,9 +21,10 @@
 		
 			<p:panel header="Bienvenue sur le site" id="panel" >
 			
-		        <br/>
+		        <p:commandButton action="authentification.xhtml" value="Entrer sans initialiser la bdd"  update="panel"   styleClass="ui-priority-primary"/>
 
-				<p:commandButton action="#{initialisation.initValuesBDD}" value="Entrer"  update="panel"  style="margin-left: 30%;" styleClass="ui-priority-primary"/>
+
+				<p:commandButton action="#{initialisation.initValuesBDD}" value="Entrer en initialisant la bdd"  update="panel"   styleClass="ui-priority-primary"/>
 
 
 			</p:panel>

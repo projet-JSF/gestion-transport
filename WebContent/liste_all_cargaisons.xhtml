@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body>
+	<!-- ============Utilisation du modele layout.xhtml============ -->
+
+	<!-- Injection du layout  -->	
+	<ui:composition template="/templates/layout.xhtml">
+
+	
+		<!-- Definition d'un nouveau content -->
+		<ui:define name="content">  
+			
+				
+				
+				<!-- ===========Affichage de la liste des cargaisons aériennes =========== -->
+				
+				
+				<h2 style="font-family: 'Open Sans', sans-serif;"> Liste des cargaisons aériennes</h2>
+			
+				<h:form>
+					<p:dataTable value="#{gestion_cargaison.findAllCargaisonsAeriennesBdd()}" var="cargaison" resizableColumns="true" width="60%" border="1">
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="ID cargaison" />
+							</f:facet>
+							<h:outputText value="#{cargaison.idCargaison}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Reference" />
+							</f:facet>
+							<h:outputText value="#{cargaison.reference}" />
+						</p:column>
+					
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="distance" />
+							</f:facet>
+							<h:outputText value="#{cargaison.distance}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Date de livraison" />
+							</f:facet>
+							<h:outputText value="#{cargaison.dateLivraison }" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Type de cargaison" />
+							</f:facet>
+							<h:outputText value="aerienne" />
+						</p:column>
+						
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Poids" />
+							</f:facet>
+							<h:outputText value="#{cargaison.poids}" />
+						</p:column>
+					
+					
+						<!-- Colonne pour afficher le compte -->
+									
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Afficher" />
+							</f:facet>
+							<h:commandLink id="affiche" action="afficheCargaison" actionListener="#{gestion_cargaison.selectionnerCargaison}" >
+											
+<!-- 									Passage de parametre au composant : nom afficherID / valeur = l'id du client -->
+									<f:param id="afficherID" name="id" value="#{cargaison.idCargaison}"/>
+											
+<!-- 									 label du lien  -->
+									<h:outputText value="afficher" />
+										
+							</h:commandLink>
+										
+						</p:column>
+					
+					</p:dataTable>
+			</h:form>
+		
+						<!-- ===========Affichage de la liste des cargaisons routières =========== -->
+				
+				
+				<h2 style="font-family: 'Open Sans', sans-serif;"> Liste des cargaisons routières</h2>
+			
+				<h:form>
+					<p:dataTable value="#{gestion_cargaison.findAllCargaisonsRoutieresBdd()}" var="cargaison" resizableColumns="true" width="60%" border="1">
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="ID cargaison" />
+							</f:facet>
+							<h:outputText value="#{cargaison.idCargaison}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Reference" />
+							</f:facet>
+							<h:outputText value="#{cargaison.reference}" />
+						</p:column>
+					
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="distance" />
+							</f:facet>
+							<h:outputText value="#{cargaison.distance}" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Date de livraison" />
+							</f:facet>
+							<h:outputText value="#{cargaison.dateLivraison }" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Type de cargaison" />
+							</f:facet>
+							<h:outputText value="routiere" />
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Température" />
+							</f:facet>
+							<h:outputText value="#{cargaison.temperature}" />
+						</p:column>
+					
+					
+						<!-- Colonne pour afficher le compte -->
+									
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Afficher" />
+							</f:facet>
+							<h:commandLink id="affiche" action="afficheCargaison" actionListener="#{gestion_cargaison.selectionnerCargaison}" >
+											
+<!-- 									Passage de parametre au composant : nom deleteID / valeur = l'id du client -->
+									<f:param id="afficherID" name="id" value="#{cargaison.idCargaison}"/>
+											
+<!-- 									 label du lien  -->
+									<h:outputText value="afficher" />
+										
+							</h:commandLink>			
+							
+
+										
+						</p:column>
+					
+					</p:dataTable>
+			</h:form>
+		
+		
+		
+		</ui:define>
+	
+	</ui:composition> 
+
+</body> 
+</html>
