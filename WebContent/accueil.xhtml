@@ -28,6 +28,10 @@ h1{
 		<!-- Definition d'un nouveau content -->
 		<ui:define name="content">  
 		
+				<p:messages id="messages" showDetail="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+		
 				<!-- ===========Affichage de la liste des cargaisons aériennes =========== -->
 				
 				
@@ -52,7 +56,7 @@ h1{
 					
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="distance" />
+								<h:outputText value="Distance (km)" />
 							</f:facet>
 							<h:outputText value="#{cargaison.distance}" />
 						</p:column>
@@ -74,7 +78,7 @@ h1{
 						
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Poids" />
+								<h:outputText value="Poids maximum (kg)" />
 							</f:facet>
 							<h:outputText value="#{cargaison.poids}" />
 						</p:column>
@@ -125,7 +129,7 @@ h1{
 					
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="distance" />
+								<h:outputText value="Distance (km)" />
 							</f:facet>
 							<h:outputText value="#{cargaison.distance}" />
 						</p:column>
@@ -146,7 +150,7 @@ h1{
 						
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Température" />
+								<h:outputText value="Température (°C)" />
 							</f:facet>
 							<h:outputText value="#{cargaison.temperature}" />
 						</p:column>
@@ -205,7 +209,7 @@ h1{
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Poids" />
+							<h:outputText value="Poids (kg)" />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.poids}" />
@@ -214,7 +218,7 @@ h1{
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Temperature" />
+							<h:outputText value="Temperature (°C)" />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.temperature}" />
@@ -223,7 +227,7 @@ h1{
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Volume" />
+							<h:outputText value="Volume (m3)" />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.volume}" />

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIParameter;
@@ -16,10 +17,11 @@ import com.intiformation.gestiontransport.dao.interfaces.ICargaisonDAO;
 import com.intiformation.gestiontransport.dao.interfaces.IMarchandiseDAO;
 import com.intiformation.gestiontransport.entity.Cargaison;
 import com.intiformation.gestiontransport.entity.CargaisonAerienne;
+import com.intiformation.gestiontransport.entity.CargaisonRoutiere;
 import com.intiformation.gestiontransport.entity.Marchandise;
 
 /**
- * Classe pour la gestion des marchandises <br/>
+ * Managed bean pour la gestion des marchandises <br/>
  * 
  * @author Marie
  *
@@ -29,6 +31,10 @@ import com.intiformation.gestiontransport.entity.Marchandise;
 public class GestionMarchandiseBean implements Serializable{
 
 /*============================Propriétés=================================================*/
+		// DAO de la marchandise
+		private IMarchandiseDAO marchandiseDAO;
+		private ICargaisonDAO cargaisonDAO;
+	
 		//Liste des identifiants des marchandises
 		private List<Long> listeIDMarchandise;	
 		
@@ -41,10 +47,7 @@ public class GestionMarchandiseBean implements Serializable{
 		//Propriété de la marchandise 
 		private Marchandise marchandise;
 		private Long idCargaisonMarchandise;
-		
-		// DAO de la marchandise
-		private IMarchandiseDAO marchandiseDAO;
-		private ICargaisonDAO cargaisonDAO;
+
 
 /*============================Construsteur=================================================*/		
 		/**
@@ -106,35 +109,75 @@ public class GestionMarchandiseBean implements Serializable{
 		 * @param event
 		 */
 		public void modifierMarchandise (ActionEvent event) {
-		
-			//Message vers la VUE
-			FacesContext contextJSF = FacesContext.getCurrentInstance();
 			
 			//On recupere la cargaison correspondant à l'id de cargaison indiqué dans le formulaire
 			Cargaison cargaisonMarchandise = cargaisonDAO.getById(idCargaisonMarchandise);
 			
-			//On attribut cette cargaison à la propriété marchandise
-			marchandise.setCargaison(cargaisonMarchandise);
+			//Test du type de la cargaison
 			
-			//On modifie la marchandise dans la bdd
-			marchandiseDAO.modifier(marchandise);
-			
-//			if (marchandiseDAO.modifier(marchandise)) {
-//				//..........if ok
-//				//message vers vue
-//				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modification réussie.", " - La marchandise a été modifié avec succès.");
-//				
-//				contextJSF.addMessage(null, message);
-//				
-//			}else { ///..............not ok
-//				
-//				//message vers vue
-//				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, " La modification échoué.", "- La marchandise n'a pas été modifié.");
-//				
-//				contextJSF.addMessage(null, message);
-//				
-//			}//end else
-			
+			if(cargaisonMarchandise instanceof CargaisonAerienne) {
+				//=> Si la cargaison sélectionnée est aerienne, il y a un poids maximum
+				double poidsMax=((CargaisonAerienne) cargaisonMarchandise).getPoids();
+				double poidsTotal=cargaisonDAO.getPoidsTotal(idCargaisonMarchandise);
+				double poidsMarchandise=marchandise.getPoids();
+				
+				//On vérifie que le poids total de la cargaison ne va pas depasser le poids maximum en ajoutant la nouvelle marchandise
+				if((poidsTotal+poidsMarchandise)<=poidsMax) {
+					//=> Le poids ne depasse pas le poids max
+					//On attribut cette cargaison à la propriété marchandise
+					marchandise.setCargaison(cargaisonMarchandise);
+					
+					//On modifie la marchandise dans la bdd
+					marchandiseDAO.modifier(marchandise);
+				}else {
+					//=> Le poids  depasse  le poids max
+					
+					//recup context
+					FacesContext contextJSF = FacesContext.getCurrentInstance();
+					
+					//message vers vue
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"La modification a échoué.", 
+							" La marchandise n'a pas été modifiée car son poids est trop élevé. \n "
+							+ "Poids maximum de la cargaison "+ idCargaisonMarchandise + " : "+ poidsMax +" kg. \n"
+							+ "Poids actuelle de la cargaison : " + poidsTotal+" kg. \n"
+							+ "Poids de la marchandise à ajouter : "+ poidsMarchandise+" kg. \n");
+					
+					contextJSF.addMessage(null, message);
+				}//end else
+			}else {
+				//=> Si la cargaison sélectionnée est routiere, il y a une température à respecter : si la température necessaire à la conservation de la marchandise est plus faibke que celle de la cargaison, la marchandise risque d'etre endommagée.
+				// NB : on part du principe qu'une marchandise peut supporter une température plus faible que sa température optimale mais pas une température plus élevée.
+				double temperatureCargaison=((CargaisonRoutiere)cargaisonMarchandise).getTemperature();
+				double temperatureMarchandise=marchandise.getTemperature();
+				
+				//On vérifie que la température de la cargaison est égale ou plus faible que la température de la marchandise
+				if(temperatureMarchandise>=temperatureCargaison) {
+					//=> La température de la cargaison est plus faible que celle de la marchandise donc c'est bon.
+					
+					//On attribut cette cargaison à la propriété marchandise
+					marchandise.setCargaison(cargaisonMarchandise);
+					
+					//On modifie la marchandise dans la bdd
+					marchandiseDAO.modifier(marchandise);
+					
+				}else {
+					//=> La température de la cargaison est plus élevée que celle de la marchandise.
+					
+					//recup context
+					FacesContext contextJSF = FacesContext.getCurrentInstance();
+					
+					//message vers vue
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"La modification a échoué.", 
+							" La marchandise n'a pas été modifiée car sa température inférieur à celle de la cargaison. \n"
+							+ "Température de la cargaison "+ idCargaisonMarchandise + " : "+ temperatureCargaison+"°C. \n" 
+							+ "Température de la marchandise à ajouter : "+ temperatureMarchandise+"°C. \n");
+					
+					contextJSF.addMessage(null, message);
+				}//end else
+				
+			}//end else
 		}//end modifierMarchandise
 		
 		
@@ -144,42 +187,80 @@ public class GestionMarchandiseBean implements Serializable{
 		/* ****************************************************** */
 		/**
 		 * Invoquée au click du bouton ajouter de la page ajouter_marchandise.xhtml
-		 * Ajoute une marchandise dans la bdd
+		 * Ajoute une marchandise dans la bdd et verifie que le poids ou la température correspond aux critères de la cargaison 
 		 * @param event
 		 */
 		public void ajouterMarchandise(ActionEvent event) {
 			
-			//recup context
-			FacesContext contextJSF = FacesContext.getCurrentInstance();
+
 			
 			//On recupere la cargaison correspondant à l'id de cargaison indiqué dans le formulaire
 			Cargaison cargaisonMarchandise = cargaisonDAO.getById(idCargaisonMarchandise);
 			
-			//On attribut cette cargaison à la propriété marchandise
-			marchandise.setCargaison(cargaisonMarchandise);
+			//Test du type de la cargaison
 			
-			
-			//On ajoute la marchandise à la DAO
-			marchandiseDAO.ajouter(marchandise);
-			
-			//ajout BDD
-//			if (marchandiseDAO.ajouter(marchandise)) {
-//				//-------------Ajout ok
-//				//message vers vue
-//				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ajout réussie.", " - La marchandise a été ajouté avec succès.");
-//				
-//				contextJSF.addMessage(null, message);
-//				
-//				
-//			}else {
-//				//--------------Ajout not ok
-//				//message vers vue
-//				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, " L'ajout a échoué.", "- La marchandise n'a pas été ajouté.");
-//				
-//				contextJSF.addMessage(null, message);
-//				
-//				
-//			}//end else
+			if(cargaisonMarchandise instanceof CargaisonAerienne) {
+				//=> Si la cargaison sélectionnée est aerienne, il y a un poids maximum
+				double poidsMax=((CargaisonAerienne) cargaisonMarchandise).getPoids();
+				double poidsTotal=cargaisonDAO.getPoidsTotal(idCargaisonMarchandise);
+				double poidsMarchandise=marchandise.getPoids();
+				
+				//On vérifie que le poids total de la cargaison ne va pas depasser le poids maximum en ajoutant la nouvelle marchandise
+				if((poidsTotal+poidsMarchandise)<=poidsMax) {
+					//=> Le poids ne depasse pas le poids max
+					//On attribut cette cargaison à la propriété marchandise
+					marchandise.setCargaison(cargaisonMarchandise);
+					
+					//On ajoute la marchandise à la DAO
+					marchandiseDAO.ajouter(marchandise);
+				}else {
+					//=> Le poids  depasse  le poids max
+					
+					//recup context
+					FacesContext contextJSF = FacesContext.getCurrentInstance();
+					
+					//message vers vue
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"L'ajout a échoué.", 
+							" La marchandise n'a pas été ajoutée car son poids est trop élevé. \n"
+							+ "Poids maximum de la cargaison "+ idCargaisonMarchandise + " : "+ poidsMax +" kg. \n"
+							+ "Poids actuelle de la cargaison : " + poidsTotal+" kg. \n"
+							+ "Poids de la marchandise à ajouter : "+ poidsMarchandise+" kg. \n");
+					
+					contextJSF.addMessage(null, message);
+				}//end else
+			}else {
+				//=> Si la cargaison sélectionnée est routiere, il y a une température à respecter : si la température necessaire à la conservation de la marchandise est plus faibke que celle de la cargaison, la marchandise risque d'etre endommagée.
+				// NB : on part du principe qu'une marchandise peut supporter une température plus faible que sa température optimale mais pas une température plus élevée.
+				double temperatureCargaison=((CargaisonRoutiere)cargaisonMarchandise).getTemperature();
+				double temperatureMarchandise=marchandise.getTemperature();
+				
+				//On vérifie que la température de la cargaison est égale ou plus faible que la température de la marchandise
+				if(temperatureMarchandise>=temperatureCargaison) {
+					//=> La température de la cargaison est plus faible que celle de la marchandise donc c'est bon.
+					//On attribut cette cargaison à la propriété marchandise
+					marchandise.setCargaison(cargaisonMarchandise);
+					
+					//On ajoute la marchandise à la DAO
+					marchandiseDAO.ajouter(marchandise);
+					
+				}else {
+					//=> La température de la cargaison est plus élevée que celle de la marchandise.
+					
+					//recup context
+					FacesContext contextJSF = FacesContext.getCurrentInstance();
+					
+					//message vers vue
+					FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"L'ajout a échoué.", 
+							" La marchandise n'a pas été ajoutée car sa température inférieur à celle de la cargaison. \n"
+							+ "Température de la cargaison "+ idCargaisonMarchandise + " : "+ temperatureCargaison +"°C.00 \n"
+							+ "Température de la marchandise à ajouter : "+ temperatureMarchandise +"°C. \n");
+					
+					contextJSF.addMessage(null, message);
+				}//end else
+				
+			}//end else
 			
 		}//end ajouterMarchandise 
 
@@ -248,8 +329,6 @@ public class GestionMarchandiseBean implements Serializable{
 				//3. affectation de la marchandise sélectionnée à la prop marchandise du managedbean
 				setMarchandise(marchandiseEdit);
 
-				
-				
 				
 				//Recuperation de la liste de toutes les cargaisons
 				List<Cargaison> listeAllCargaison = cargaisonDAO.getAll();
@@ -321,6 +400,7 @@ public class GestionMarchandiseBean implements Serializable{
 			
 			
 /*============================Getter Setter=================================================*/
+			
 			public Marchandise getMarchandise() {
 				return marchandise;
 			}
@@ -377,4 +457,6 @@ public class GestionMarchandiseBean implements Serializable{
 			public void setMarchandiseDAO(IMarchandiseDAO marchandiseDAO) {
 				this.marchandiseDAO = marchandiseDAO;
 			}		
+			
+			
 }//end classe

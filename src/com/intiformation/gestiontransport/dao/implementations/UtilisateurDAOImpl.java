@@ -10,14 +10,27 @@ import com.intiformation.gestiontransport.dao.interfaces.IUtilisateurDAO;
 import com.intiformation.gestiontransport.entity.Marchandise;
 import com.intiformation.gestiontransport.entity.Utilisateur;
 import com.intiformation.gestiontransport.tool.JPAUtil;
-
+/**
+ * Classe concrete de la DAO pour l'utilisateur.
+ * Hérite de la classe JpaDAO pour récupérer les méthodes du CRUD et implémente l'interface UtilisateurDAOImpl pour les méthodes spécifiques aux utilisateurs
+ * @author Valentin
+ *
+ */
 public class UtilisateurDAOImpl extends JpaDAO<Utilisateur> implements IUtilisateurDAO {
 
+	//====== Constructeur =============
+	/**
+	 * Constructeur vide
+	 */
 	public UtilisateurDAOImpl() {
 		super(Utilisateur.class);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Test si l'utilisateur est présent dans la base de données (et si il n'y en a qu'un)
+	 * Utilisise la NamedQuery qui est définie sur la classe entity de l'Utilisateur
+	 */
 	@Override
 	public boolean isUtilisateurExists(String pLogin, String pMotDePasse) {
 		// TODO Auto-generated method stub
@@ -42,6 +55,10 @@ public class UtilisateurDAOImpl extends JpaDAO<Utilisateur> implements IUtilisat
 		return false;
 	}//end isUtilisateurExists
 
+	
+	/**
+	 * recupere l'utilisateur par son mot de passe et id
+	 */
 	@Override
 	public Utilisateur getUserByMailMDP(String pLogin, String pMotDePasse) {
 		

@@ -1,7 +1,12 @@
 package com.intiformation.gestiontransport.dao.interfaces;
 
 import java.util.List;
-
+/**
+ * Interface générique de la DAO. Cette interface sera utilisée par les trois classes principales : Cargaison, Utilisateur et Marchandise
+ * @author Marie
+ *
+ * @param <T>
+ */
 public interface IGenericDAO<T> {
 		
 		public void ajouter(T entity);

@@ -28,17 +28,17 @@
 							value="#{gestion_marchandise.marchandise.nom}" />
 						<p:message for="idNom" />
 
-						<h:outputLabel for="idpoids" value="Poids" />
+						<h:outputLabel for="idpoids" value="Poids (kg)" />
 						<h:inputText id="idpoids"
 							value="#{gestion_marchandise.marchandise.poids}" />
 						<p:message for="idpoids" />
 
-						<h:outputLabel for="idTemperature" value="Temperature" />
+						<h:outputLabel for="idTemperature" value="Temperature (°C)" />
 						<h:inputText id="idTemperature"
 							value="#{gestion_marchandise.marchandise.temperature}" />
 						<p:message for="idTemperature" />
 
-						<h:outputLabel for="idVolume" value="Volume" />
+						<h:outputLabel for="idVolume" value="Volume (m3)" />
 						<h:inputText id="idVolume"
 							value="#{gestion_marchandise.marchandise.volume}" />
 						<p:message for="idVolume" />
@@ -49,6 +49,9 @@
 							<f:selectItems value="#{gestion_marchandise.listeIDCargaisonsBDD}" />
 				       	</p:selectOneMenu>
 						<p:message for="idIdCargaison" />
+						
+
+
 
 						<f:facet name="footer">
 							<p:commandButton update="grid" action="accueil"

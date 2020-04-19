@@ -6,7 +6,7 @@ import com.intiformation.gestiontransport.entity.Cargaison;
 import com.intiformation.gestiontransport.entity.Marchandise;
 
 /**
- * Interface pour la dao des Cargaisons.
+ * Interface pour la dao des Cargaisons. Définie les méthodes spécifiques aux cargaisons
  * Hérite de l'interface générale IGenericDAO. 
  * 
  * @author IN-MP-018

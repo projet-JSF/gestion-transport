@@ -31,7 +31,7 @@
 							value="#{gestion_cargaison.cargaison.reference}" />
 						<br />
 
-						<h:outputLabel for="iddistance" value="distance" />
+						<h:outputLabel for="iddistance" value="distance (km)" />
 						<h:outputText id="iddistance"
 							value="#{gestion_cargaison.cargaison.distance}" />
 						<br />
@@ -46,7 +46,7 @@
 							value="#{gestion_cargaison.typeCargaison}" />
 						<br />
 
-						<h:outputLabel for="idpoids" value="Poids"
+						<h:outputLabel for="idpoids" value="Poids maximum (kg)"
 							rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
 						<h:outputText id="idpoids"
 							value="#{gestion_cargaison.cargaison.poids}"
@@ -54,24 +54,24 @@
 
 
 
-						<h:outputLabel for="idtemperature" value="Temperature"
+						<h:outputLabel for="idtemperature" value="Temperature (°C)"
 							rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
 						<h:outputText id="idtemperature"
 							value="#{gestion_cargaison.cargaison.temperature}"
 							rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
 						<br />
 
-						<h:outputLabel for="idVolumeTotal" value="Volume total" />
+						<h:outputLabel for="idVolumeTotal" value="Volume total (m3)" />
 						<h:outputText id="idVolumeTotal"
 							value="#{gestion_cargaison.volumeTotal}" />
 						<br />
 
-						<h:outputLabel for="idPoidsTotal" value="Poids total" />
+						<h:outputLabel for="idPoidsTotal" value="Poids total (kg)" />
 						<h:outputText id="idPoidsTotal"
 							value="#{gestion_cargaison.poidsTotal}" />
 						<br />
 
-						<h:outputLabel for="idCout" value="Coût" />
+						<h:outputLabel for="idCout" value="Coût (€)" />
 						<h:outputText id="idCout" value="#{gestion_cargaison.cout}" />
 						<br />
 
@@ -122,7 +122,7 @@
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Poids" />
+							<h:outputText value="Poids (kg) " />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.poids}" />
@@ -131,7 +131,7 @@
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Temperature" />
+							<h:outputText value="Temperature (°C)" />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.temperature}" />
@@ -140,7 +140,7 @@
 					<p:column>
 						<!-- En tete de la colonne -->
 						<f:facet name="header">
-							<h:outputText value="Volume" />
+							<h:outputText value="Volume (m3)" />
 						</f:facet>
 						<!-- Donnée de la colonne -->
 						<h:outputText value="#{marchandise.volume}" />

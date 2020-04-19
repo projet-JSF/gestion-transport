@@ -12,29 +12,33 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- * Classe entité
+ * Classe entité Utilisateur
  * @author IN-MP-039
  *
  */
-@Entity(name="utilisateur")
-@Table(name="utilisateurs")
+
+@Entity(name="utilisateur") //Déclarer la classe comme entité
+@Table(name="utilisateurs") // Choix du nom de la table
+
+//Named Query pour la fonction IsUtilisateurExist : 
 @NamedQueries({@NamedQuery(name="Utilisateur.isExists", 
-query="SELECT COUNT(f.idUtilisateur) FROM utilisateur f WHERE f.login = ?1 AND f.motDePasse = ?2")})
+query="SELECT COUNT(f.idUtilisateur) FROM utilisateur f WHERE f.login = ?1 AND f.motDePasse = ?2")}) 
+
 public class Utilisateur implements Serializable {
 
 	/*=================================Propriétés===============================================*/
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_utilisateur")
+	@Id //Pour désigner la clé primaire
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //Pour l'auto-incrementation
+	@Column(name="id_utilisateur") //nom de la colonne dans la table de la bdd
 	private Long idUtilisateur; 
 	
-	@Column(name="nom")
+	@Column(name="nom")//nom de la colonne dans la table de la bdd
 	private String nom;
 	
-	@Column(name="login")
+	@Column(name="login")//nom de la colonne dans la table de la bdd
 	private String login;
 	
-	@Column(name="mot_de_passe")
+	@Column(name="mot_de_passe")//nom de la colonne dans la table de la bdd
 	private String motDePasse;
 	
 	

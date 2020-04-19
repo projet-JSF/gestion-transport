@@ -40,7 +40,7 @@ public class Marchandise implements Serializable{
 	@Column(name="volume")
 	private double volume;
 	
-	//liaison avec la table cargaisons => FK
+	//Relation OneToMany avec la table cargaisons => Gestion de la FK
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="cargaison_id", referencedColumnName="id_cargaison")
 	private Cargaison cargaison;

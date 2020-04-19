@@ -18,24 +18,7 @@ import com.intiformation.gestiontransport.entity.Marchandise;
  */
 public class MarchandiseDAOImplTest {
 
-	/*******************************************
-	 * testgetAllMarchandisesBdd
-	 *************************************************************/
-	@Test
-	public void testgetAllMarchandisesBdd() {
-		// Test fait en 2ème. Après l'ajout d'une marchandise.
 
-		// Initialisation de la Dao
-		MarchandiseDAOImpl marchandiseDao = new MarchandiseDAOImpl();
-
-		// Recup de la liste
-		List<Marchandise> ListeMarchandises = marchandiseDao.getAll();
-
-		System.out.println("\n\n ////////////////////////// "+ListeMarchandises);
-		// Test si la liste fait bien la bonne longueur
-		assertTrue("Est ce que la récupération a marché", ListeMarchandises.size() == 3);
-
-	}// end testgetAllMarchandisesBdd
 	
 
 	/*******************************************
@@ -65,6 +48,8 @@ public class MarchandiseDAOImplTest {
 
 		System.out.println("\n\n" + listeMarchandises + "\n\n");
 		System.out.println(marchandise);
+		
+		
 		// Suppression de la marchandise précédemment ajouté
 		marchandiseDao.supprimer(idNouvelleMarchandise);
 
@@ -183,5 +168,24 @@ public class MarchandiseDAOImplTest {
 		assertTrue("Est ce que l'ajout a été fait", listeMarchandises.contains(marchandise));
 
 	}// end testmodifierMarchandise
+	
+	/*******************************************
+	 * testgetAllMarchandisesBdd
+	 *************************************************************/
+	@Test
+	public void testgetAllMarchandisesBdd() {
+		// Test fait en 2ème. Après l'ajout d'une marchandise.
+
+		// Initialisation de la Dao
+		MarchandiseDAOImpl marchandiseDao = new MarchandiseDAOImpl();
+
+		// Recup de la liste
+		List<Marchandise> ListeMarchandises = marchandiseDao.getAll();
+
+		System.out.println("\n\n ////////////////////////// "+ListeMarchandises);
+		// Test si la liste fait bien la bonne longueur
+		assertTrue("Est ce que la récupération a marché", ListeMarchandises.size() == 3);
+
+	}// end testgetAllMarchandisesBdd
 
 }// end classe

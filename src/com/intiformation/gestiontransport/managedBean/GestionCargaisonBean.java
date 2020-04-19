@@ -177,33 +177,49 @@ public class GestionCargaisonBean {
 	 */
 		
 	public void selectionnerCargaisonSansParam(ActionEvent event) {
-		System.out.println("Je suis dans selectionnerCargaisonSansParam du MB de Client");
+		System.out.println("Je suis dans selectionnerCargaisonSansParam du MB de Cargaison");
 
 		//1. Recup de l'id de la cargaison
 		Long idCargaisonSelec=getIdCargaisonSelectionner();
-			
+		
+		System.out.println("id de la cargaison selectionnée : "+idCargaisonSelec);
+		
 		//2. recup de la cargaison dans la bdd par l'id
 		Cargaison cargaisonEdit = cargaisonDAO.getById(idCargaisonSelec);
 			
 		//3. affectation de la cargaison sélectionnée à la prop cargaison du managedbean
 		setCargaison(cargaisonEdit);
 		
-		//4. Recup de la liste du type de cargaison
+		//4. Recup du type de cargaison
 		if(cargaisonEdit instanceof CargaisonAerienne) {
 			setTypeCargaison("aerienne");
 		}else {
 			setTypeCargaison("routiere");
 		}//end else
 		
-		//5. Recup du volume total
-		setVolumeTotal(cargaisonDAO.getVolumeTotal(idCargaisonSelec));
-		
-		//6. Recup du poid total
-		setPoidsTotal(cargaisonDAO.getPoidsTotal(idCargaisonSelec));
-		
-		//7. recup du cout 
-		setCout(cargaisonDAO.getCout(idCargaisonSelec));
-	
+		// Recuperation de la liste des marchandises pour tester si elle est vide
+		List<Marchandise> listeMarchandises=cargaisonDAO.getMarchandise(idCargaisonSelec);
+		if(listeMarchandises.size()!=0) {
+			//=> La liste des marchandises n'est pas vide 
+			//5. Recup du volume total
+			setVolumeTotal(cargaisonDAO.getVolumeTotal(idCargaisonSelec));
+			
+			//6. Recup du poid total
+			setPoidsTotal(cargaisonDAO.getPoidsTotal(idCargaisonSelec));
+			
+			//7. recup du cout 
+			setCout(cargaisonDAO.getCout(idCargaisonSelec));
+		}else {
+			//=> La liste des marchandises est vide 
+			//5. Recup du volume total
+			setVolumeTotal(0.0);
+			
+			//6. Recup du poid total
+			setPoidsTotal(0.0);
+			
+			//7. recup du cout 
+			setCout(0.0);
+		}//end else
 		
 		}//end selectionnerCargaisonSansParam
 		
@@ -217,7 +233,7 @@ public class GestionCargaisonBean {
 	 */
 	
 	public void selectionnerCargaison(ActionEvent event) {
-		System.out.println("Je suis dans selectionnerCargaison du MB de Compte");
+		System.out.println("Je suis dans selectionnerCargaison du MB de Cargaison");
 
 		//1. récup du param passé dans le composant afficherID au click du lien afficher
 		UIParameter cp = (UIParameter) event.getComponent().findComponent("afficherID");
@@ -225,27 +241,48 @@ public class GestionCargaisonBean {
 		//2. Recup de la valeur du param => l'id de la cargaison à afficher
 		Long cargaisonID = (Long) cp.getValue();
 		
+		System.out.println("id de la cargaison selectionnée : "+cargaisonID);
+		
+		setIdCargaisonSelectionner(cargaisonID);
+		
 		//2. recup de la cargaison dans la bdd par l'id
 		Cargaison cargaisonAffichage = cargaisonDAO.getById(cargaisonID);
 			
 		//3. affectation de la cargaison sélectionnée à la prop cargaison du managedbean
 		setCargaison(cargaisonAffichage);
 		
-		//4. Recup de la liste du type de cargaison
+		//4. Recup du type de cargaison
 		if(cargaisonAffichage instanceof CargaisonAerienne) {
 			setTypeCargaison("aerienne");
 		}else {
 			setTypeCargaison("routiere");
 		}//end else
 		
-		//5. Recup du volume total
-		setVolumeTotal(cargaisonDAO.getVolumeTotal(cargaisonID));
-		
-		//6. Recup du poid total
-		setPoidsTotal(cargaisonDAO.getPoidsTotal(cargaisonID));
-		
-		//7. recup du cout 
-		setCout(cargaisonDAO.getCout(cargaisonID));
+		// Recuperation de la liste des marchandises pour tester si elle est vide
+		List<Marchandise> listeMarchandises=cargaisonDAO.getMarchandise(cargaisonID);
+		if(listeMarchandises.size()!=0) {
+			//=> La liste des marchandises n'est pas vide 
+			//5. Recup du volume total
+			setVolumeTotal(cargaisonDAO.getVolumeTotal(cargaisonID));
+			
+			//6. Recup du poid total
+			setPoidsTotal(cargaisonDAO.getPoidsTotal(cargaisonID));
+			
+			//7. recup du cout 
+			setCout(cargaisonDAO.getCout(cargaisonID));
+		}else {
+			//=> La liste des marchandises est vide 
+			//5. Recup du volume total
+			setVolumeTotal(0.0);
+			
+			//6. Recup du poid total
+			setPoidsTotal(0.0);
+			
+			//7. recup du cout 
+			setCout(0.0);
+			
+			
+		}//end else
 		
 		
 	}//end selectionnerCargaison

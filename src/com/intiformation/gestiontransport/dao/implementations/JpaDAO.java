@@ -12,22 +12,26 @@ import javax.persistence.criteria.Root;
 import com.intiformation.gestiontransport.dao.interfaces.IGenericDAO;
 import com.intiformation.gestiontransport.tool.JPAUtil;
 
-
-
 /**
- * 
- * @author INTIFORMATION
+ * Implementation concrete de la DAO générale.
+ * Implémente l'interface IGenericDAO en conservant un type générique.
+ * Implémente les fonctions du CRUD de façon généraliste (c'est à dire utilisable pour n'importe quelle classe)
+ * @author Marie
  *
  * @param <T>
  */
 public abstract class JpaDAO<T> implements IGenericDAO<T> {
 
+	//============ Propriétées ====================//
+	
 	protected Class<T> entityClass;
 
 	protected EntityManager entityManager = JPAUtil.getEntityManager();
+	
 
+	//============ Constructeurs ====================//
 	/**
-	 * ctor
+	 * Constructeur prenant en parametre la classe de l'entity
 	 */
 	public JpaDAO(Class<T> entityClass) {
 		
@@ -35,8 +39,18 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 		
 	}//end ctor
 
+	
+	
+	//============ Méthodes ====================//
+	
+	
+	//--------------------------------------------------//
+	//-------------- AJOUTER  --------------------------//
+	//--------------------------------------------------//
+	
 	/**
-	 * ajout d'une entité  
+	 * Ajout d'une entité à la base de donnée.
+	 * @param entity à ajouter à la bdd
 	 */
 	@Override
 	public void ajouter(T entity) {
@@ -44,7 +58,7 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 		EntityTransaction transaction = null;
 
 		try {
-
+			
 			transaction = entityManager.getTransaction();
 			transaction.begin();
 			entityManager.persist(entity);
@@ -55,14 +69,20 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 			if (transaction != null) {
 				transaction.rollback();
 				ex.printStackTrace();
-			}
+			}//end if
 
-		}
+		}//end catch
 
 	}// end ajouter
 
+	
+	//--------------------------------------------------//
+	//-------------- MODIFIER  -------------------------//
+	//--------------------------------------------------//
+	
 	/**
-	 * modif d'une entité  
+	 * Modification d'une entité dans la base de donnée
+	 * @param entity à modifier
 	 */
 	@Override
 	public void modifier(T entity) {
@@ -81,14 +101,20 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 			if (transaction != null) {
 				transaction.rollback();
 				ex.printStackTrace();
-			}
+			}//end if
 
-		}
+		}//end catch
 
 	}// end modifier
 
+	
+	//--------------------------------------------------//
+	//-------------- SUPPRIMER  ------------------------//
+	//--------------------------------------------------//
+	
 	/**
-	 * supp  d'une entité  
+	 * Suppression d'une entité dans la bdd
+	 * @param id (clé primaire) de l'entité à supprimer
 	 */
 	@Override
 	public void supprimer(Long id) {
@@ -107,16 +133,20 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 			if (transaction != null) {
 				transaction.rollback();
 				ex.printStackTrace();
-			}
+			}//end if
 
-		}
-		
+		}//end catch
 		
 	}// end supprimer
 
 	
+	//--------------------------------------------------//
+	//-------------- GETBYID  --------------------------//
+	//--------------------------------------------------//
 	/**
-	 * get by id  une entité.  
+	 * Récupération d'une entité par son identifiant (clé primaire)
+	 * @param id de l'entité à récuperer
+	 * @return l'entité cherchée
 	 */
 	@Override
 	public T getById(Long id) {
@@ -124,8 +154,13 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 	}// end getById
 
 	
+	
+	//--------------------------------------------------//
+	//-------------- GETBYID  --------------------------//
+	//--------------------------------------------------//
 	/**
-	 * get all entités.
+	 * Récupère la liste des entités dans la bdd
+	 * @return liste des entités 
 	 */
 	@Override
 	public List<T> getAll() {
@@ -141,7 +176,6 @@ public abstract class JpaDAO<T> implements IGenericDAO<T> {
 		TypedQuery<T> getAllQuery = entityManager.createQuery(clauseSELECT);
 
 		return getAllQuery.getResultList();
-
 	}// end getAll
 
 }//end class 

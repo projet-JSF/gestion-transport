@@ -18,7 +18,7 @@
 			<br />
 			<br />
 			<h:form>
-				<p:panel header="Affichage cargaison" id="panel">
+				<p:panel header="Affichage marchandise" id="panel">
 					<h:panelGrid id="grid" columns="3" cellpadding="5" cellspacing="5">
 
 						<p:outputLabel for="idIdMarchandise" value="ID marchandise" />
@@ -31,17 +31,17 @@
 							value="#{gestion_marchandise.marchandise.nom}" />
 						<br />
 
-						<h:outputLabel for="idpoids" value="Poids" />
+						<h:outputLabel for="idpoids" value="Poids (kg)" />
 						<h:outputText id="idpoids"
 							value="#{gestion_marchandise.marchandise.poids}" />
 						<br />
 
-						<h:outputLabel for="idTemperature" value="Temperature" />
+						<h:outputLabel for="idTemperature" value="Temperature (°C)" />
 						<h:outputText id="idTemperature"
 							value="#{gestion_marchandise.marchandise.temperature}" />
 						<br />
 
-						<h:outputLabel for="idVolume" value="Volume" />
+						<h:outputLabel for="idVolume" value="Volume (m3)" />
 						<h:outputText id="idVolume"
 							value="#{gestion_marchandise.marchandise.volume}" />
 						<br />

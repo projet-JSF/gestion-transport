@@ -3,7 +3,8 @@ package com.intiformation.gestiontransport.dao.interfaces;
 import com.intiformation.gestiontransport.entity.Marchandise;
 
 /**
- * 
+ * Interface de la DAO pour les marchandises. Définie les méthodes spécifiques aux marchandises.
+ * Hérite de l'interface IGenericDAO
  * @author Marie
  *
  */

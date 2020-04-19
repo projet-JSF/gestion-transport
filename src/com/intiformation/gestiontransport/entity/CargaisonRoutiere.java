@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue("routiere")
+@DiscriminatorValue("routiere") //Gestion de l'héritage :  valeur indiquée dans la colonne discriminante dans la table de la bdd
 public class CargaisonRoutiere extends Cargaison{
 	
 	/*=================================Propriétés===============================================*/

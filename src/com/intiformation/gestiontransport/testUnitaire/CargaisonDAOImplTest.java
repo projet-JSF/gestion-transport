@@ -13,7 +13,11 @@ import com.intiformation.gestiontransport.dao.implementations.CargaisonDAOImpl;
 import com.intiformation.gestiontransport.dao.implementations.MarchandiseDAOImpl;
 import com.intiformation.gestiontransport.entity.Cargaison;
 import com.intiformation.gestiontransport.entity.Marchandise;
-
+/**
+ * 
+ * @author IN-MP-018
+ *
+ */
 public class CargaisonDAOImplTest {
 	
 	//======================================================================//
@@ -221,7 +225,7 @@ public class CargaisonDAOImplTest {
 	//======================================================================//
 	
 	@Test
-	public void getVolumeTotal() {
+	public void testGetVolumeTotal() {
 		//Initialisation de la dao
 		CargaisonDAOImpl cargaisondao = new CargaisonDAOImpl();
 		MarchandiseDAOImpl marchandisedao = new MarchandiseDAOImpl();
@@ -260,7 +264,7 @@ public class CargaisonDAOImplTest {
 	}//end getVolumeTotal
 	
 	@Test
-	public void getPoidsTotal() {
+	public void testGetPoidsTotal() {
 		//Initialisation de la dao
 		CargaisonDAOImpl cargaisondao = new CargaisonDAOImpl();
 		MarchandiseDAOImpl marchandisedao = new MarchandiseDAOImpl();

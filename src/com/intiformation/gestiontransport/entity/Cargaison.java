@@ -19,14 +19,18 @@ import javax.persistence.Table;
 
 /**
  * Classe entité. Mère des classes Cargaison Aerienne et CargaisonRoutiere.
- * En relation OneToMany avec l'entité Marchandise 
  * @author IN-MP-039
  *
  */
+
 @Entity(name="cargaison")
 @Table(name="cargaisons")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//Stratégie groupement une table
-@DiscriminatorColumn(name="type_cargaison", discriminatorType=DiscriminatorType.STRING)//gérer la colonne discriminate
+
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)//Gestion de l'héritage : stratégie groupement en une table
+
+@DiscriminatorColumn(name="type_cargaison", discriminatorType=DiscriminatorType.STRING)//gérer la colonne discriminante qui indiquera le type de cargaison
+
+
 public class Cargaison implements Serializable{
 
 	/*=================================Propriétés===============================================*/
@@ -44,10 +48,6 @@ public class Cargaison implements Serializable{
 	@Column(name="date_livraison")
 	private String dateLivraison; 
 
-//	//Liaison avec la table marchandises
-//	@OneToMany(mappedBy="cargaison", cascade=CascadeType.ALL)
-//	private List<Marchandise> listeMarchandise;
-	
 	
 	/*=================================Constructeurs===============================================*/
 	

@@ -11,16 +11,21 @@ import javax.servlet.http.HttpSession;
 import com.intiformation.gestiontransport.dao.implementations.UtilisateurDAOImpl;
 import com.intiformation.gestiontransport.dao.interfaces.IUtilisateurDAO;
 import com.intiformation.gestiontransport.entity.Utilisateur;
-
+/**
+ * Managed bean pour l'authentification de l'utilisateur
+ * @author Valentin
+ *
+ */
 @ManagedBean(name = "authenticationBean")
 @SessionScoped
 public class AuthentificationBean implements Serializable {
 
 	/* =========================PROPRIETES========================= */
+	//L'utilisteur 'margot' avec le mot de passe '0000' est l'utilisateur créé par défaut dans la bdd au moment de l'initialisation
 	private String login="margot";
 	private String motDePasse="0000";
 
-	// propriété qui ava servir à stocker les informations de l'utilisateur
+	// propriété qui va servir à stocker les informations de l'utilisateur
 	// connecté.
 	private Utilisateur utilisateurLogged;
 
@@ -82,7 +87,7 @@ public class AuthentificationBean implements Serializable {
 
 	/**
 	 * Permet de connecter le conseiller et de lui créer une session
-	 * 
+	 * Invoquée au click du bouton "Se connecter" de la page authentification.xhtml
 	 * @return "accueil.xhtml" pour renvoyer vers la page d'accueil
 	 */
 
@@ -137,6 +142,7 @@ public class AuthentificationBean implements Serializable {
 
 	/**
 	 * Permet de deconnecter le conseiller
+	 * Invoquée au click du bouton "Se deconnecter" de la bar de menu
 	 * 
 	 * @return
 	 */

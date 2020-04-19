@@ -9,6 +9,7 @@ import com.intiformation.gestiontransport.entity.Marchandise;
 
 /**
  * Implémentation concrète de la couche dao pour les Marchandises <br/> 
+ * Hérite de la classe JpaDAO pour récupérer les méthodes du CRUD et implémente l'interface IMarchandiseDAO pour les méthodes spécifiques aux marchandises
  * @author Marie
  *
  */

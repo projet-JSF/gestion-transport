@@ -8,7 +8,11 @@ import com.intiformation.gestiontransport.entity.Cargaison;
 import com.intiformation.gestiontransport.entity.CargaisonAerienne;
 import com.intiformation.gestiontransport.entity.CargaisonRoutiere;
 import com.intiformation.gestiontransport.entity.Marchandise;
-
+/**
+ * Classe de tests préliminaires pour verifier que la dao fonctionne
+ * @author IN-MP-018
+ *
+ */
 public class AppTest {
 
 	public static void main(String[] args) {

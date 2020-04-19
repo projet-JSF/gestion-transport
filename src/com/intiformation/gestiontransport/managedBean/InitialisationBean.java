@@ -1,5 +1,7 @@
 package com.intiformation.gestiontransport.managedBean;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,7 +18,7 @@ import com.intiformation.gestiontransport.entity.Marchandise;
 import com.intiformation.gestiontransport.entity.Utilisateur;
 
 /**
- * Managed bean pour l'initialisation de la base de donnée à l'ouverture du site
+ * Managed bean pour l'initialisation de la base de donnée à l'ouverture de l'application
  * @author Laure
  *
  */
@@ -61,6 +63,23 @@ public class InitialisationBean {
 	 * => Permet de recommencer avec une bdd 'propre' pour les tests
 	 */
 	public String initValuesBDD() {
+		
+		//On supprime tous les éléments de la bdd
+		
+		List<Utilisateur> listeUtilisateur = utilisateurDAO.getAll();
+		for(Utilisateur utilisateur:listeUtilisateur) {
+			utilisateurDAO.supprimer(utilisateur.getIdUtilisateur());
+		}//end for
+		
+		List<Marchandise> listeMarchandises = marchandiseDAO.getAll();
+		for(Marchandise marchandise:listeMarchandises) {
+			marchandiseDAO.supprimer(marchandise.getIdMarchandise());
+		}//end for
+		
+		List<Cargaison> listeCargaisons = cargaisonDAO.getAll();
+		for(Cargaison cargaison:listeCargaisons) {
+			cargaisonDAO.supprimer(cargaison.getIdCargaison());
+		}//end for
 		
 		// Création des cargaisons et marchandises à ajouter à la bdd
 		

@@ -28,7 +28,7 @@
 								<h:inputText id="idRef" value="#{gestion_cargaison.cargaison.reference}" />
 								<p:message for="idRef" />
 								
-								<h:outputLabel for="iddistance" value="distance" />
+								<h:outputLabel for="iddistance" value="Distance (km)" />
 								<h:inputText id="iddistance" value="#{gestion_cargaison.cargaison.distance}" />
 								<p:message for="iddistance" />
 								
@@ -43,12 +43,12 @@
 								
 								
 								
-									<h:outputLabel for="idpoids" value="Poids" rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
+									<h:outputLabel for="idpoids" value="Poids (kg)" rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
 									<h:inputText id="idpoids" value="#{gestion_cargaison.cargaison.poids}" rendered="#{gestion_cargaison.typeCargaison.equals('aerienne')}" />
 						       	
 						       	
 								
-									<h:outputLabel for="idtemperature" value="Temperature" rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
+									<h:outputLabel for="idtemperature" value="Temperature (°C)" rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
 									<h:inputText id="idtemperature" value="#{gestion_cargaison.cargaison.temperature}" rendered="#{gestion_cargaison.typeCargaison.equals('routiere')}" />
 						       	
 								

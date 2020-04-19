@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue("aerienne")
+@DiscriminatorValue("aerienne") //Gestion de l'héritage :  valeur indiquée dans la colonne discriminante dans la table de la bdd
 public class CargaisonAerienne extends Cargaison{
 
 	/*=================================Propriétés===============================================*/
