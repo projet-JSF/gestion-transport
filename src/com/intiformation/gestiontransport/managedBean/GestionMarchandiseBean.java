@@ -68,6 +68,7 @@ public class GestionMarchandiseBean implements Serializable{
 		 * @return liste des cargaisons routières
 		 */
 		public List<Marchandise> findAllMarchandisesBdd(){
+			System.out.println("Je suis dans findAllMarchandisesBdd du MB de Marchandise");
 			
 			List<Marchandise> listeMarchandiseBDD = marchandiseDAO.getAll();
 			
@@ -85,14 +86,12 @@ public class GestionMarchandiseBean implements Serializable{
 		 * @param event
 		 */
 		public void supprimerMarchandise(ActionEvent event) {
+			System.out.println("Je suis dans supprimerMarchandise du MB de Marchandise");
 			
 			//1. recup de l'id de la marchandise à supprimer
 			Long marchandiseID = marchandise.getIdMarchandise();
 			
-			//2. Recup du context
-			FacesContext contextJSF = FacesContext.getCurrentInstance();
-			
-			//3. On fait la suppression
+			//2. On fait la suppression
 			marchandiseDAO.supprimer(marchandiseID);
 			
 		}//end supprimerMarchandise
@@ -109,6 +108,7 @@ public class GestionMarchandiseBean implements Serializable{
 		 * @param event
 		 */
 		public void modifierMarchandise (ActionEvent event) {
+			System.out.println("Je suis dans modifierMarchandise du MB de Marchandise");
 			
 			//On recupere la cargaison correspondant à l'id de cargaison indiqué dans le formulaire
 			Cargaison cargaisonMarchandise = cargaisonDAO.getById(idCargaisonMarchandise);
@@ -192,7 +192,7 @@ public class GestionMarchandiseBean implements Serializable{
 		 */
 		public void ajouterMarchandise(ActionEvent event) {
 			
-
+			System.out.println("Je suis dans ajouterMarchandise du MB de Marchandise");
 			
 			//On recupere la cargaison correspondant à l'id de cargaison indiqué dans le formulaire
 			Cargaison cargaisonMarchandise = cargaisonDAO.getById(idCargaisonMarchandise);
@@ -278,16 +278,14 @@ public class GestionMarchandiseBean implements Serializable{
 			 */
 			public void initialiserMarchandise(ActionEvent event){
 				
-				System.out.println("Je suis dans initialiserMarchandise");
+				System.out.println("Je suis dans initialiserMarchandise du MB de Marchandise");
 				
 				//Instanciation d'un nouvel objet marchandise vide dans lequel on va stocker les infos de la nouvelle marchandise via le formulaire
 				Marchandise addMarchandise = new Marchandise();
 				
 				//Affectation de l'objet à la prop marchandise du MB
 				setMarchandise(addMarchandise);
-				
-				//Recup de la liste des id des cargaisons
-				System.out.println("Récupération de la liste des id cargaisons");
+
 				
 				//Recuperation de la liste de toutes les cargaisons
 				List<Cargaison> listeAllCargaison = cargaisonDAO.getAll();
@@ -300,10 +298,8 @@ public class GestionMarchandiseBean implements Serializable{
 					listeIDCargaison.add(cargaison.getIdCargaison());
 				}//end for
 				
-				listeIDCargaisonsBDD = listeIDCargaison;
-				
-				
-				
+				setListeIDCargaisonsBDD(listeIDCargaison);
+
 			}//end initialiserMarchandise
 			
 			
@@ -319,7 +315,8 @@ public class GestionMarchandiseBean implements Serializable{
 			 */
 				
 			public void selectionnerMarchandiseSansParam(ActionEvent event) {
-
+				System.out.println("Je suis dans selectionnerMarchandiseSansParam du MB de Marchandise");
+				
 				//1. Recup de l'id de la marchandise
 				Long idMarchandiseSelec=getIdMarchandiseSelectionner();
 					
@@ -333,6 +330,7 @@ public class GestionMarchandiseBean implements Serializable{
 				//Recuperation de la liste de toutes les cargaisons
 				List<Cargaison> listeAllCargaison = cargaisonDAO.getAll();
 				
+				System.out.println("listeAllCargaison = " +listeAllCargaison);
 				//init de la liste des ID
 				List<Long> listeIDCargaison =new ArrayList<>();
 				
@@ -340,9 +338,12 @@ public class GestionMarchandiseBean implements Serializable{
 				for(Cargaison cargaison : listeAllCargaison) {
 					listeIDCargaison.add(cargaison.getIdCargaison());
 				}//end for
+				System.out.println("listeIDCargaison = " +listeIDCargaison);
+				setListeIDCargaisonsBDD(listeIDCargaison);
 				
-				listeIDCargaisonsBDD = listeIDCargaison;
-				
+				//init de l'id de la cargaison
+				setIdCargaisonMarchandise(marchandiseEdit.getCargaison().getIdCargaison());
+
 				}//end selectionnerMarchandiseSansParam
 				
 			/* ************************************************************* */
@@ -355,7 +356,7 @@ public class GestionMarchandiseBean implements Serializable{
 			 */
 			
 			public void selectionnerMarchandise(ActionEvent event) {
-				System.out.println("Je suis dans selectionnerCargaison du MB de Compte");
+				System.out.println("Je suis dans selectionnerMarchandise du MB de Marchandise");
 
 				//1. récup du param passé dans le composant afficherID au click du lien afficher
 				UIParameter cp = (UIParameter) event.getComponent().findComponent("afficherID");
@@ -368,6 +369,25 @@ public class GestionMarchandiseBean implements Serializable{
 					
 				//3. affectation de la marchandise sélectionnée à la prop marchandise du managedbean
 				setMarchandise(marchandiseAffichage);
+				
+				//Recuperation de la liste de toutes les cargaisons
+				List<Cargaison> listeAllCargaison = cargaisonDAO.getAll();
+				
+				System.out.println("listeAllCargaison = " +listeAllCargaison);
+				
+				//init de la liste des ID
+				List<Long> listeIDCargaison =new ArrayList<>();
+				
+				//Recup des IDs
+				for(Cargaison cargaison : listeAllCargaison) {
+					listeIDCargaison.add(cargaison.getIdCargaison());
+				}//end for
+				
+				System.out.println("listeIDCargaison = " +listeIDCargaison);
+				setListeIDCargaisonsBDD(listeIDCargaison);
+				
+				//init de l'id de la cargaison
+				setIdCargaisonMarchandise(marchandiseAffichage.getCargaison().getIdCargaison());
 				
 			}//end selectionnerCargaison
 				
@@ -382,7 +402,8 @@ public class GestionMarchandiseBean implements Serializable{
 			 * @param event
 			 */
 			public void findListIdMarchandise(ActionEvent event) {
-
+				System.out.println("Je suis dans findListIdMarchandise du MB de Marchandise");
+				
 				//Recuperation de la liste de toutes les cargaisons
 				List<Marchandise> listeAllMarchandise = marchandiseDAO.getAll();
 				
@@ -415,8 +436,6 @@ public class GestionMarchandiseBean implements Serializable{
 			public void setListeIDMarchandise(List<Long> listeIDMarchandise) {
 				this.listeIDMarchandise = listeIDMarchandise;
 			}
-
-
 
 			public Long getIdMarchandiseSelectionner() {
 				return idMarchandiseSelectionner;
